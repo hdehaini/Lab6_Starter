@@ -97,55 +97,32 @@ function initFormHandler() {
 
   // Steps B4-B9 will occur inside the event listener from step B3
   // B4. TODO - Create a new FormData object from the <form> element reference above
-  const formData = new FormData(form);
 
   // B5. TODO - Create an empty object (I'll refer to this object as recipeObject to
   //            make this easier to read), and then extract the keys and corresponding
   //            values from the FormData object and insert them into recipeObject
-  const recipeObject = {};
-  formData.forEach((value, key) => recipeObject[key] = value);
-
-  let valid = true;
-  for (const key in recipeObject) {
-    if (recipeObject[key] === '') {
-      valid = false;
-    }
-  }
-
   // B6. TODO - Create a new <recipe-card> element
-  const recipeCard = document.createElement('recipe-card');
 
   // B7. TODO - Add the recipeObject data to <recipe-card> using element.data
-  recipeCard.data = recipeObject;
 
   // B8. TODO - Append this new <recipe-card> to <main>
-  const main = document.querySelector('main');
-  if (valid) {
-    main.appendChild(recipeCard);
-
 
     // B9. TODO - Get the recipes array from localStorage, add this new recipe to it, and
     //            then save the recipes array back to localStorage
-
-    const recipes = getRecipesFromStorage();
-    recipes.push(recipeObject);
-    saveRecipesToStorage(recipes);
-  }
 
   // B10. TODO - Get a reference to the "Clear Local Storage" button
   const clearStorageButton = document.getElementsByClassName('danger')[0];
 
   // B11. TODO - Add a click event listener to clear local storage button
-  // Steps B12 & B13 will occur inside the event listener from step B11
-  // B12. TODO - Clear the local storage
-  // B13. TODO - Delete the contents of <main>
-
   clearStorageButton.addEventListener(
     'click',
     event => {
       event.preventDefault();
+      const main = document.querySelector('main');
       localStorage.clear();
       main.innerHTML = '';
     });
-
+  // Steps B12 & B13 will occur inside the event listener from step B11
+  // B12. TODO - Clear the local storage
+  // B13. TODO - Delete the contents of <main>
 }
